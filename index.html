@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Meeting Meter</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h1>Meeting Meter</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h2>Current Cost</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h2 id="meter-display">$100.56</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<button type="button" class="btn btn-primary" id="start-meter">Start</button>
+					<button type="button" class="btn btn-warning" id="pause-meter">Pause</button>
+					<button type="button" class="btn btn-danger" id="reset-meter">Reset</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<p>Other Stats</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="list-group">
+						<li class="list-group-item">Cost/Minute: <span id="cost-minute"></span></li>
+						<li class="list-group-item">Cost/Hour: <span id="cost-hour"></span></li>
+						<li class="list-group-item">Cost/Day: <span id="cost-day"></span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<button type="button" class="btn btn-info" id="collapse">Show/Hide Attendee Info</button>
+					<a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Add Attendee Type</a>
+					<table id="demo" class="table table-hover">
+						<thead>
+							<tr>
+								<th>Cnt</th>
+								<th>Job Title</th>
+								<th>Hourly Rate</th>
+							</tr>
+						</thead>
+						<tbody id="attendee-rows">
+							<tr>
+								<td>2</td>
+								<td>PM(s)</td>
+								<td>$100</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="modal fade" id="modal-id">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Add Attendee Type</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="">Job Title Name</label>
+							<input type="text" class="form-control" id="new-job-title">
+						</div>
+						<div class="form-group">
+							<label for="">Hourly Rate</label>
+							<input type="text" class="form-control" id="new-hourly-rate">
+						</div>
+						<div class="form-group">
+							<label for="">Count of this Type of Attendee</label>
+							<input type="number" class="form-control" id="new-count">
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger pull-left" >Delete</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary" id="btn-new-attendee">Add</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="assets/js/logic.js"></script>
+	</body>
+</html>
