@@ -4,6 +4,7 @@ $(function(){
 	var curCost = 0;
 	var meterState = "reset";
 	var interval;
+	var timeInterval = .1;
 
 	$("#collapse").click(function(){
 		$("#demo").fadeToggle();
@@ -16,10 +17,10 @@ $(function(){
 	}
 
 	function initialize(){
-		attendeeArray[0] = new Attendie("PM", "150", "3");
-		attendeeArray[1] = new Attendie("PE", "75", "1");
-		attendeeArray[2] = new Attendie("CEO", "200", "1");
-		attendeeArray[3] = new Attendie("APM", "150", "5");
+		attendeeArray[0] = new Attendie("PM", 100, 1);
+		attendeeArray[1] = new Attendie("PE", 50, 2);
+		attendeeArray[2] = new Attendie("CEO", 150, 1);
+		attendeeArray[3] = new Attendie("APM", 80, 2);
 	}
 
 	function resetTable()
@@ -33,7 +34,7 @@ $(function(){
 			dJobTitle.html(a.jobTitle + "(s)");
 
 			var dHourlyRate = $("<td>");
-			dHourlyRate.html(a.hourlyRate);
+			dHourlyRate.html("$" + a.hourlyRate.toFixed(2));
 
 			var dCount = $("<td>");
 			dCount.html(a.count);
@@ -49,7 +50,7 @@ $(function(){
 		hourlyCost = 0;
 		for(var i in attendeeArray)
 		{
-			hourlyCost += parseInt(attendeeArray[i].hourlyRate) * parseInt(attendeeArray[i].count);
+			hourlyCost += attendeeArray[i].hourlyRate * attendeeArray[i].count;
 		}
 
 		var aCount = attendeeArray
@@ -61,7 +62,7 @@ $(function(){
 	}
 
 	function addAttendee(jobTitle, hourlyRate, count){
-		attendeeArray[attendeeArray.length] = new Attendie(jobTitle, hourlyRate, count);
+		attendeeArray[attendeeArray.length] = new Attendie(jobTitle, parseInt(hourlyRate), parseInt(count));
 	}
 
 	$("#btn-new-attendee").click(function(){
@@ -79,12 +80,13 @@ $(function(){
 	}
 
 	function meetingMeterStart(){
-		curCost += hourlyCost/3600 / 4;
+		var divider = 1 / timeInterval;
+		curCost += hourlyCost/3600 / divider;
 		$("#meter-display").text("$" + curCost.toFixed(2));
 	}
 	$("#start-meter").click(function(){
 		if(meterState !== "running"){
-			interval = setInterval(meetingMeterStart, 250);
+			interval = setInterval(meetingMeterStart, 1000 * timeInterval);
 			meterState = "running";
 		}
 	})
