@@ -4,7 +4,7 @@ $(function(){
 	var curCost = 0;
 	var meterState = "reset";
 	var interval;
-	var timeInterval = .1;
+	var timeInterval = .05;
 
 	$("#collapse").click(function(){
 		$("#demo").fadeToggle();
@@ -17,10 +17,10 @@ $(function(){
 	}
 
 	function initialize(){
-		attendeeArray[0] = new Attendie("PM", 100, 1);
-		attendeeArray[1] = new Attendie("PE", 50, 2);
-		attendeeArray[2] = new Attendie("CEO", 150, 1);
-		attendeeArray[3] = new Attendie("APM", 80, 2);
+		// attendeeArray[0] = new Attendie("PM", 100, 1);
+		// attendeeArray[1] = new Attendie("PE", 50, 2);
+		// attendeeArray[2] = new Attendie("CEO", 150, 1);
+		// attendeeArray[3] = new Attendie("APM", 80, 2);
 	}
 
 	function resetTable()
@@ -39,12 +39,47 @@ $(function(){
 			var dCount = $("<td>");
 			dCount.html(a.count);
 
-
+			newRow.attr("data-id", i);
 			newRow.append(dCount).append(dJobTitle).append(dHourlyRate);
 			$("#attendee-rows").append(newRow);
 
 		}
+		$("tbody > tr").click(function(){
+			editAttendee($(this).data("id"));
+		})
 	}
+
+	function editAttendee(rowId){
+		$("#btn-modify").attr("data-id", rowId);
+		$("#btn-delete").attr("data-id", rowId);
+		$("#existing-job-title").val(attendeeArray[rowId].jobTitle);
+		$("#existing-hourly-rate").val(attendeeArray[rowId].hourlyRate);
+		$("#existing-count").val(attendeeArray[rowId].count);
+		$("#modal-edit").modal('toggle');
+	}
+
+
+	$("#btn-modify").click(function(){
+		var existingID = $(this).data("id");
+		var jobTitle = $("#existing-job-title").val();
+		var hourlyRate = $("#existing-hourly-rate").val();
+		var count = $("#existing-count").val();
+		attendeeArray[existingID] = new Attendie(jobTitle, parseInt(hourlyRate), parseInt(count));		
+		resetTable();
+		resetCosts();
+		closeModal("#modal-edit");
+	})
+	$("#btn-delete").click(function(){
+		var existingID = $(this).data("id");
+		var jobTitle = $("#existing-job-title").val();
+		var hourlyRate = $("#existing-hourly-rate").val();
+		var count = $("#existing-count").val();
+		attendeeArray.splice(existingID,1);
+		resetTable();
+		resetCosts();
+		closeModal("#modal-edit");
+	})
+
 
 	function resetCosts(){
 		hourlyCost = 0;
@@ -71,6 +106,9 @@ $(function(){
 		resetCosts();
 		closeModal("#modal-id")
 	})
+
+
+	
 
 	function closeModal(modalID){
    		$(modalID).modal('toggle');
@@ -104,6 +142,7 @@ $(function(){
 			meterState = "reset";
 		}
 	})
+
 
 	initialize();
 	resetTable();
