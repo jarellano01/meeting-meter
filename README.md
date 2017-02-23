@@ -29,9 +29,9 @@ This will give cost per minute, per hour, and per day just to give people a good
 Once the meeting begins put this screen in the meeting for everyone to see and press start. 
 
 ##My Experience
-Well I ultimately created this app for the purpose of testing my JS skills but I figured I'd test it out in a meeting. I don't think the person holding the meeting was too exited to see the true cost of holding a pointless meeting but everyone else seemed to enjoy it. 
+Well I ultimately created this app for the purpose of testing my JS skills but then I figured why not test it out in an actual meeting. I don't believe the person holding the meeting was too exited to see the true cost of holding a pointless meeting but everyone else seemed to enjoy it. 
 
-Ultimately we had less pointless meetings (or I was just not invited) so it this simple app made it's point.
+Ultimately we had less pointless meetings (or I was just not invited). 
 
 ##Contribute 
 I love collaboration so if you like this app and wish to help me make it better then do the following: 
